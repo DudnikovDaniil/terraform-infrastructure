@@ -86,3 +86,9 @@ variable "k8s_node_disk_size" {
   type        = number
   default     = 30
 }
+
+variable "ssh_public_key" {
+  description = "SSH public key for node access"
+  type        = string
+  default     = ""
+}

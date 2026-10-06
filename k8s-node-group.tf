@@ -62,10 +62,10 @@ resource "yandex_kubernetes_node_group" "k8s_nodes" {
       preemptible = false
     }
 
-    # Метаданные: SSH-ключ для доступа к нодам
-    metadata = {
-      ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
-    }
+    # Метаданные: SSH-ключ для доступа к нодам (опционально)
+    metadata = var.ssh_public_key != "" ? {
+      ssh-keys = "ubuntu:${var.ssh_public_key}"
+    } : {}
 
     # Контейнер-рантайм
     container_runtime {
